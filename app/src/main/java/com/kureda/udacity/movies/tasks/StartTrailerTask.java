@@ -124,7 +124,6 @@ public class StartTrailerTask extends AsyncTask<String, Void, String> {
         mActivity = activity;
     }
 
-
     public interface TrailerRunner {
         public void runTrailer(String url);
     }
