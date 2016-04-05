@@ -4,6 +4,7 @@
         android:key="pref_sort_by"
         android:title="@string/pref_sort_by"
         android:entries="@array/pref_sort_by_entries"
+        android:summary="%s"
         android:entryValues="@array/pref_sort_by_values"
         android:defaultValue="@string/sort_by_popularity" />
 </PreferenceScreen>

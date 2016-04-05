@@ -8,10 +8,15 @@
     <!-- Strings related to Settings -->
     <string name="sort_by_popularity">popularity.desc</string>
     <string name="sort_by_highest_rated">vote_average.desc</string>
+    <string name="favorites">favorites</string>
     <string name="pref_sort_by">Sort By</string>
     <string name="pref_sort_by_default">popularity.desc</string>
     <string name="by_popularity">Show more popular first</string>
     <string name="by_rating">Show higher rated first</string>
+    <string name="by_favorites">Show favorites</string>
+
     <string name="title_activity_detail">Movie details</string>
+    <string name="no_movie_selected">Click on a poster to see movie details.</string>
+    <string name="title_activity_reviews">Movie reviews</string>
 
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/lightest"
+              android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/review_item_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="8dp"
+        android:paddingRight="0dp"
+        android:text="Author"
+        android:gravity="right"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/review_font_size"/>
+
+    <TextView
+        android:id="@+id/review_item_text"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:lines="1"
+        android:padding="8dp"
+        android:paddingLeft="0dp"
+        android:textSize="@dimen/review_font_size"
+        />
+    />
+</LinearLayout>
+    <!--android:layout_toLeftOf="@id/ivFixture_Guest"-->
+    <!--style="@style/simpletopic.black"-->

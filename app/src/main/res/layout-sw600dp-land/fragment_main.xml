@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:layout_margin="8dp"
+                tools:context=".ui.MainFragment"
+                tools:showIn="@layout/activity_main">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="5"
+        android:verticalSpacing="1dp"
+        android:horizontalSpacing="1dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_margin="0dp"
+        android:padding="2dp"
+        android:id="@+id/gridViewPosters"/>
+
+</FrameLayout>

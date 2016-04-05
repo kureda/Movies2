@@ -1,9 +1,12 @@
-package com.kureda.udacity.movies;
+package com.kureda.udacity.movies.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
+import com.kureda.udacity.movies.R;
+
 /**
+ * Fragment to display settings
  * Created by Serg on 12/15/2015.
  */
 
