@@ -72,7 +72,6 @@ public class MainFragment extends Fragment implements SharedPreferences
             }
         });
 
-
         // Attach infinite scroll listener
         gridView.setOnScrollListener(new EndlessScrollListener() {
             @Override
