@@ -51,7 +51,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     public void append(Movie[] movies) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        for (Movie movie : movies) {// ??? is it OK to insert records one by one?
+        for (Movie movie : movies) {
             contentValues.put(Contract.MovieTable.COLUMN_MOVIE_ID, movie.getId());
             contentValues.put(Contract.MovieTable.COLUMN_TITLE, movie.getTitle());
             contentValues.put(Contract.MovieTable.COLUMN_RELEASE_DATE, movie.getDate());

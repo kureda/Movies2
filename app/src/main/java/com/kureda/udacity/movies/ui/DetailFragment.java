@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +21,26 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Fragment for displaying movie details
  */
-public class DetailFragment extends Fragment implements View.OnClickListener, StartTrailerTask
-        .TrailerRunner {
+public class DetailFragment extends Fragment implements StartTrailerTask.TrailerRunner {
     private static final String RATING_TITLE = "User rating: ";
     private static final String POPULARITY_TITLE = "Popularity: ";
     public static final String MOVIE = "movie";
     public static final String YOUTUBE_URL = "https://www.youtube.com/watch?v=";
     public static final String YOUTUBE_PACKAGE = "com.google.android.youtube";
     private Movie mMovie;
+    @Bind(R.id.detail_trailer)
+    Button detailTrailer;
+    @Bind(R.id.detail_reviews)
+    Button detailReviews;
+    @Bind(R.id.detail_favorite)
+    ImageButton detailFavorite;
 
     public DetailFragment() {
     }
@@ -41,6 +49,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener, St
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
+        ButterKnife.bind(this, view);
 
         mMovie = getMovie();
 
@@ -65,24 +74,14 @@ public class DetailFragment extends Fragment implements View.OnClickListener, St
         TextView title = (TextView) view.findViewById(R.id.detail_title);
         if (mMovie.getTitle().isEmpty()) { //no movie is selected yet. Hide movie detais
             mMovie.setTitle(getString(R.string.no_movie_selected));
-            ((Button) view.findViewById(R.id.detail_trailer)).setVisibility(View.INVISIBLE);
-            ((Button) view.findViewById(R.id.detail_reviews)).setVisibility(View.INVISIBLE);
-            ((ImageButton) view.findViewById(R.id.detail_favorite)).setVisibility(View.INVISIBLE);
+            detailTrailer.setVisibility(View.INVISIBLE);
+            detailReviews.setVisibility(View.INVISIBLE);
+            detailFavorite.setVisibility(View.INVISIBLE);
             rating.setText("");
             popularity.setText("");
         }
         title.setText(mMovie.getTitle());
-
-
-        // ??? I had to register it as listener because declaring android:onClick() in xml
-        // works only for activities, but doesn't work for fragments. Is it OK or there is
-        // some better way to handle button clicks in fragments ???
-        ((ImageButton) view.findViewById(R.id.detail_favorite)).setOnClickListener(this);
-        ((Button) view.findViewById(R.id.detail_reviews)).setOnClickListener(this);
-        ((Button) view.findViewById(R.id.detail_trailer)).setOnClickListener(this);
-
-        super.onActivityCreated(savedInstanceState); // do we need it?
-
+        super.onActivityCreated(savedInstanceState);
         return view;
     }
 
@@ -126,6 +125,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener, St
         setHasOptionsMenu(true);
     }
 
+    @OnClick(R.id.detail_favorite)
     public void toggleFavorite(View view) {
         ((ImageButton) view).setImageResource(R.drawable.ic_not_favorite);
         ToggleFavoriteTaskParameters parameters = new ToggleFavoriteTaskParameters(getContext(),
@@ -134,12 +134,14 @@ public class DetailFragment extends Fragment implements View.OnClickListener, St
         toggleFavoriteTask.execute(parameters);
     }
 
+    @OnClick(R.id.detail_reviews)
     public void showReviews() {
         Intent intent = new Intent(getActivity(), ReviewsActivity.class);
         intent.putExtra(Intent.EXTRA_TEXT, mMovie.getId());
         startActivity(intent);
     }
 
+    @OnClick(R.id.detail_trailer)
     public void showTrailer() {
         StartTrailerTask trailerTask = new StartTrailerTask();
         trailerTask.setTrailerRunner(this);
@@ -151,32 +153,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener, St
         if (date.isEmpty())
             return ""; //if no date
         return date.substring(0, 4);
-    }
-
-    /**
-     * To handle button clicks
-     * ??? I had to create this method because declaring android:onClick() in xml works only for
-     * activities, but doesn't work for fragments. Is it OK or there is some better way to
-     * handle button clicks in fragments ???
-     *
-     * @param view View of clicked button
-     */
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.detail_favorite:
-                toggleFavorite(view);
-                break;
-            case R.id.detail_reviews:
-                showReviews();
-                break;
-            case R.id.detail_trailer:
-                showTrailer();
-                break;
-            default:
-                Log.i("Serg", "Unknown: " + view.getId());
-                break;
-        }
     }
 
     @Override

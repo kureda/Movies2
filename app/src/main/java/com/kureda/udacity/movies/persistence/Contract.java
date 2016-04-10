@@ -33,8 +33,6 @@ public class Contract {
         public static final String COLUMN_SORTED_BY = "sorted_by";
 
         //3 possible values of "COLUMN_SORTED_BY"
-        // ??? the values are the same that in Strings.xml :(
-        // It breaks "do it once" principle, but I don't know how to read them here from there
         public static final String RATING = "vote_average.desc";
         public static final String POPULARITY = "popularity.desc";
         public static final String FAVORITE = "favorites";

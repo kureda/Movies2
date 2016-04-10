@@ -64,8 +64,6 @@ public class ReviewsActivity extends AppCompatActivity {
 
     /**
      * Make left arrow button on menu go "back" rather then "up"
-     * ??? is it right way to achieve it? Or I should I handle it through backstak methods ???
-     *
      * @param item selected item
      * @return whether it was successful
      */

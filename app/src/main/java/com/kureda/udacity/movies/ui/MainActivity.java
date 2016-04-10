@@ -3,27 +3,36 @@ package com.kureda.udacity.movies.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kureda.udacity.movies.R;
 import com.kureda.udacity.movies.persistence.Movie;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Callback {
 
 
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
-
     private boolean mTwoPane;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Nullable
+    @Bind(R.id.movie_detail_container)
+    View container;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
         mTwoPane = haveTwoPanes();
@@ -37,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Call
     }
 
     private boolean haveTwoPanes() {
-        return findViewById(R.id.movie_detail_container) != null;
+        return null != container;
     }
 
     @Override

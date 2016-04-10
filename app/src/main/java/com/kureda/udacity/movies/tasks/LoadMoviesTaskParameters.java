@@ -6,8 +6,6 @@ import com.kureda.udacity.movies.ui.MoviesAdapter;
  * Created by Serg on 3/22/2016.
  * Object that holds all parameters and references that required for downloading movies from
  * internet and database. Passed from MoviesAdapter to SwopMovies task.
- * ??? Not sure if it is correct architectural solution, to bundle all this in one object
- * ??? Should I be using Bundle instead?
  */
 public class LoadMoviesTaskParameters {
     // default settings of the moviedatabase site
@@ -15,9 +13,6 @@ public class LoadMoviesTaskParameters {
     private static final int FIRST_PAGE_NUMBER = 1;
 
     // Movie list request sorting options
-    // ??? It's the same values that at Strings.xml, and proper way would be to read them
-    // from there, rather than duplicate here, but I don't know how to read Strings.xml
-    // from here, without acces to Context
     private static final String VOTE = "vote_average.desc";
     private static final String POPULARITY = "popularity.desc";
     private static final String FAVORITE = "favorite";

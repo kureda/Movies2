@@ -14,6 +14,9 @@ import com.kureda.udacity.movies.persistence.Review;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Adapter for list of reviews
  * Created by Serg on 4/3/2016.
@@ -34,17 +37,32 @@ public class ReviewsAdapter extends ArrayAdapter<Review> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
         LinearLayout layout;
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             layout = (LinearLayout) inflater.inflate(R.layout.review_item_view, parent, false);
+            holder = new ViewHolder(layout);
+            layout.setTag(holder);
         } else {
             layout = (LinearLayout) convertView;
+            holder = (ViewHolder) convertView.getTag();
         }
 
         Review review = getItem(position);
-        ((TextView) layout.findViewById(R.id.review_item_author)).setText(review.getAuthor() + ".");
-        ((TextView) layout.findViewById(R.id.review_item_text)).setText(review.getText());
+        holder.author.setText(review.getAuthor() + ".");
+        holder.text.setText(review.getText());
         return layout;
+    }
+
+    static class ViewHolder {
+        @Bind(R.id.review_item_author)
+        TextView author;
+        @Bind(R.id.review_item_text)
+        TextView text;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

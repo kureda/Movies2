@@ -2,7 +2,6 @@ package com.kureda.udacity.movies.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,9 @@ import com.kureda.udacity.movies.persistence.Movie;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Fragment that displays movie details
  */
@@ -25,9 +27,8 @@ public class MainFragment extends Fragment implements SharedPreferences
     public static final String KEY_FOR_SORT_BY_PREFERENCE = "pref_sort_by";
     public static final String SCROLL_POSITION = "ScrollPosition";
     public static final int MAXIMAL_NUMBER_OF_VISIBLE_ITEMS = 3 * 6;
-
     private MoviesAdapter mMoviesAdapter;
-    Parcelable state;
+    @Bind(R.id.gridViewPosters) GridView gridView;
 
     public MainFragment() {
     }
@@ -56,9 +57,9 @@ public class MainFragment extends Fragment implements SharedPreferences
             mMoviesAdapter.setPosition(savedInstanceState.getInt(SCROLL_POSITION));
         }
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this,rootView);
 
         // Get a reference to the ListView
-        GridView gridView = (GridView) rootView.findViewById(R.id.gridViewPosters);
         gridView.setAdapter(mMoviesAdapter);
         mMoviesAdapter.setView(gridView);
         mMoviesAdapter.loadMovies(true, false); //reload same movies to adapter
