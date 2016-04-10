@@ -64,6 +64,7 @@ public class ReviewsActivity extends AppCompatActivity {
 
     /**
      * Make left arrow button on menu go "back" rather then "up"
+     *
      * @param item selected item
      * @return whether it was successful
      */
@@ -83,8 +84,7 @@ public class ReviewsActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(REVIEWS, mAdapter.getReviews());
     }
-
-
+    
     private void readReviewsFromInternet(String movieId) {
         LoadReviewTask movieTask = new LoadReviewTask();
         movieTask.setAdapter(mAdapter);
